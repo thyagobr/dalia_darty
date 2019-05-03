@@ -1,7 +1,7 @@
 require 'dalia/survey_platform_api_wrapper'
 
 class GenerateSurvey
-  attr_accessor :title, :description, :author_source, :success
+  attr_accessor :title, :description, :author_source, :success, :survey
 
   PROJECT_UUID = "03c6d9f0-8cf0-0135-e3fc-04383552e34a"
 
@@ -15,7 +15,7 @@ class GenerateSurvey
   def generate!
     #Dalia::CampaignPlatformAPIWrapper.create_offer(offer_attribute_hash)
     begin 
-      Dalia::SurveyPlatformAPIWrapper.create_survey(survey_attribute_hash)
+      @survey = Dalia::SurveyPlatformAPIWrapper.create_survey(survey_attribute_hash)
       @success = true
     rescue Exception => e
       @success = false
